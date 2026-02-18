@@ -1,0 +1,167 @@
+<%- include('layout', { body: `
+    <!-- Hero Section -->
+    <section class="hero-section bg-gradient-primary text-white py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h1 class="display-4 fw-bold mb-3">
+                        <i class="bi bi-download"></i> Instagram Reel Downloader
+                    </h1>
+                    <p class="lead mb-4">
+                        Download your favorite Instagram Reels quickly and easily. 
+                        Just paste the URL and get your video in seconds!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg">
+                        <div class="card-body p-5">
+                            <h2 class="text-center mb-4">Download Instagram Reel</h2>
+                            
+                            <!-- Download Form -->
+                            <form id="downloadForm" class="mb-4">
+                                <div class="mb-3">
+                                    <label for="reelUrl" class="form-label fw-bold">
+                                        <i class="bi bi-link-45deg"></i> Instagram Reel URL
+                                    </label>
+                                    <input 
+                                        type="url" 
+                                        class="form-control form-control-lg" 
+                                        id="reelUrl" 
+                                        name="url"
+                                        placeholder="https://www.instagram.com/reel/ABC123DEF/"
+                                        required
+                                    >
+                                    <div class="form-text">
+                                        Paste the complete Instagram Reel URL here
+                                    </div>
+                                </div>
+                                
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg" id="downloadBtn">
+                                        <span class="btn-text">
+                                            <i class="bi bi-download"></i> Download Reel
+                                        </span>
+                                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!-- Progress/Loading -->
+                            <div id="loadingDiv" class="d-none">
+                                <div class="text-center">
+                                    <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <h5>Processing your request...</h5>
+                                    <p class="text-muted">Please wait while we fetch the video.</p>
+                                </div>
+                            </div>
+
+                            <!-- Result Section -->
+                            <div id="resultDiv" class="d-none" style="max-width: 400px;">
+                                <div class="alert alert-success" role="alert">
+                                    <h5 class="alert-heading">
+                                        <i class="bi bi-check-circle-fill"></i> Success!
+                                    </h5>
+                                    <p>Preview your reel, then download it.</p>
+                                    <div class="mb-3 preview-video-wrap mx-auto">
+                                        <video id="previewVideo" class="preview-video rounded" controls playsinline preload="metadata">
+                                            Your browser does not support video preview.
+                                        </video>
+                                    </div>
+                                    <div class="d-grid">
+                                        <a id="downloadLink" href="#" class="btn btn-success" download>
+                                            <i class="bi bi-download"></i> Download Video
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Error Section -->
+                            <div id="errorDiv" class="d-none">
+                                <div class="alert alert-danger" role="alert">
+                                    <h5 class="alert-heading">
+                                        <i class="bi bi-exclamation-triangle-fill"></i> Error
+                                    </h5>
+                                    <p id="errorMessage"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Why Choose Our Downloader?</h2>
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-lightning-fill text-warning fs-1"></i>
+                    </div>
+                    <h5>Fast & Easy</h5>
+                    <p class="text-muted">Download reels in seconds with our simple and intuitive interface.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-shield-check text-success fs-1"></i>
+                    </div>
+                    <h5>Safe & Secure</h5>
+                    <p class="text-muted">No login required. Your privacy is our priority.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-phone text-primary fs-1"></i>
+                    </div>
+                    <h5>Mobile Friendly</h5>
+                    <p class="text-muted">Works perfectly on all devices - desktop, tablet, and mobile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="text-center mb-4">About</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>How to use:</h5>
+                            <ol>
+                                <li>Open Instagram and find the reel you want to download</li>
+                                <li>Click the three dots (⋯) on the reel</li>
+                                <li>Select "Copy link"</li>
+                                <li>Paste the link in the input field above</li>
+                                <li>Click "Download Reel" and save the video</li>
+                            </ol>
+                            
+                            <div class="alert alert-info mt-4">
+                                <h6 class="alert-heading">
+                                    <i class="bi bi-info-circle-fill"></i> Important Notes
+                                </h6>
+                                <ul class="mb-0">
+                                    <li>Only download content you own or have permission to use</li>
+                                    <li>Respect copyright and intellectual property rights</li>
+                                    <li>This tool is for personal use only</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+` }) %>
